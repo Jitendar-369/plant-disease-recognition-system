@@ -1,28 +1,32 @@
-Plant Disease Recognition Using CNN
-Overview
-This project implements a Convolutional Neural Network (CNN) model for recognizing plant diseases from images. The model classifies plant leaf images into different categories (such as Healthy, Powdery Mildew, and Rust). The dataset is divided into training, validation, and test sets, with data augmentation applied to the training set for better generalization.
+# Plant Disease Recognition Using CNN
 
-Table of Contents
-Installation
-Dataset
-Model Architecture
-Training
-Results
-Usage
-License
-Installation
-Clone the repository:
-bash
-Copy
-Edit
+## Overview
+
+This project uses a Convolutional Neural Network (CNN) to classify plant leaf images into different categories, such as Healthy, Powdery Mildew, and Rust. The model is trained on a dataset of labeled images, and the data augmentation is applied to improve model generalization. This repository contains the code to load, preprocess, train, evaluate, and use the model for plant disease classification.
+
+## Table of Contents
+
+1. [Installation](#installation)
+2. [Dataset](#dataset)
+3. [Model Architecture](#model-architecture)
+4. [Training](#training)
+5. [Results](#results)
+6. [Usage](#usage)
+7. [License](#license)
+
+## Installation
+
+To use this project, follow the steps below:
+
+### Clone the repository:
+```bash
 git clone https://github.com/your_username/plant-disease-recognition-cnn.git
 cd plant-disease-recognition-cnn
-Install required dependencies:
-bash
-Copy
-Edit
+Install dependencies:
+
 pip install -r requirements.txt
-Here is the content for requirements.txt:
+
+requirements.txt contains:
 
 shell
 Copy
@@ -33,28 +37,40 @@ matplotlib
 pandas
 seaborn
 scikit-learn
-Dataset
-The dataset contains images of plant leaves labeled with disease types. It is divided into the following directories:
 
-Train: Contains the training images grouped by their class (Healthy, Powdery Mildew, Rust).
-Validation: Contains the validation images for tuning the model.
-Test: Contains test images for final evaluation.
-Make sure to update the data_dir path in the code to point to the location of your dataset on Google Drive.
+Dataset
+The dataset should be organized in the following structure:
+
+
+/Plant Disease Recognition
+    /Train
+        /Healthy
+        /Powdery
+        /Rust
+    /Validation
+        /Healthy
+        /Powdery
+        /Rust
+    /Test
+        /Healthy
+        /Powdery
+        /Rust
+Make sure to update the data_dir path in the code to point to the location of your dataset in Google Drive or local machine.
 
 Model Architecture
-The CNN model consists of the following layers:
+The CNN model is built with the following layers:
 
-Conv2D Layer 1: 32 filters, kernel size of (3, 3), ReLU activation
-MaxPooling2D Layer 1: Pooling size of (2, 2)
-Conv2D Layer 2: 64 filters, kernel size of (3, 3), ReLU activation
-MaxPooling2D Layer 2: Pooling size of (2, 2)
-Dropout Layer 1: Dropout rate of 0.25 for regularization
-Conv2D Layer 3: 128 filters, kernel size of (3, 3), ReLU activation
-MaxPooling2D Layer 3: Pooling size of (2, 2)
-Dropout Layer 2: Dropout rate of 0.25 for regularization
+Conv2D Layer 1: 32 filters, kernel size (3, 3), ReLU activation
+MaxPooling2D Layer 1: Pooling size (2, 2)
+Conv2D Layer 2: 64 filters, kernel size (3, 3), ReLU activation
+MaxPooling2D Layer 2: Pooling size (2, 2)
+Dropout Layer 1: Dropout rate 0.25 for regularization
+Conv2D Layer 3: 128 filters, kernel size (3, 3), ReLU activation
+MaxPooling2D Layer 3: Pooling size (2, 2)
+Dropout Layer 2: Dropout rate 0.25 for regularization
 Flatten Layer: Flatten the feature map for the dense layers
-Dense Layer 1: 256 units, ReLU activation, Dropout rate of 0.5
-Dense Layer 2: 3 units (for the three classes), Softmax activation
+Dense Layer 1: 256 units, ReLU activation, Dropout rate 0.5
+Dense Layer 2: 3 units for classification (Healthy, Powdery Mildew, Rust), Softmax activation
 Model Compilation
 The model is compiled using:
 
@@ -62,7 +78,7 @@ Loss Function: Categorical Crossentropy
 Optimizer: Adam
 Metrics: Accuracy
 Training
-To train the model, run the following code:
+Run the following code to start training the model:
 
 python
 Copy
@@ -76,26 +92,28 @@ history = model.fit(
 The training process includes early stopping to prevent overfitting.
 
 Results
-Once trained, the model achieves high accuracy in classifying plant diseases. The results can be evaluated on the validation and test datasets. The confusion matrix and classification report will help in understanding the model's performance.
-
-Accuracy Plot
-Training and validation accuracy are plotted over the epochs for performance visualization.
+Once trained, you can visualize the model's performance with accuracy and loss plots. The training and validation accuracy are plotted over epochs to monitor progress.
 
 python
 Copy
 Edit
+# Plot training & validation accuracy
 plt.plot(history.history['accuracy'])
 plt.plot(history.history['val_accuracy'])
-Loss Plot
-Training and validation loss are plotted over the epochs to monitor the model's training progress.
+plt.title('Model Accuracy')
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
+plt.legend(['Train', 'Validation'], loc='upper left')
 
-python
-Copy
-Edit
+# Plot training & validation loss
 plt.plot(history.history['loss'])
 plt.plot(history.history['val_loss'])
+plt.title('Model Loss')
+plt.xlabel('Epoch')
+plt.ylabel('Loss')
+plt.legend(['Train', 'Validation'], loc='upper left')
 Usage
-Once the model is trained, you can use it to predict plant disease on new images.
+Once the model is trained, you can use it to predict plant disease on new images. Here's how you can make predictions:
 
 Preprocess the image:
 python
@@ -108,7 +126,15 @@ Copy
 Edit
 predicted_class = predict_disease(model, img_array)
 print(f'The predicted class is: {predicted_class}')
-Make sure to replace img_path with the path to the test image.
+Make sure to replace img_path with the path to the image you want to classify.
 
 License
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+yaml
+Copy
+Edit
+
+---
+
+Feel free to customize this further according to your specific needs! Just copy-paste it into your `README.md` file in the repository. Let me know if you need anything else!
