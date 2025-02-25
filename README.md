@@ -1,6 +1,5 @@
 # Plant Disease Recognition Using CNN
 
-
 ## Overview
 
 This project uses a Convolutional Neural Network (CNN) to classify plant leaf images into different categories, such as Healthy, Powdery Mildew, and Rust. The model is trained on a dataset of labeled images, and the data augmentation is applied to improve model generalization. This repository contains the code to load, preprocess, train, evaluate, and use the model for plant disease classification.
